@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!--  -->
+    <title>Testing Database</title>
+  </head>
+  <body>
+    <div class="container">
+      <h3><%= title %></h3>
+
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">NPM</th>
+            <th scope="col">NAMA</th>
+            <th scope="col">KELAS</th>
+            <th class="text-center" scope="col">ACTION</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for (let user of users) { %>
+          <tr>
+            <th scope="row"><%= user.NPM %></th>
+            <th scope="row"><%= user.NAMA %></th>
+            <th scope="row"><%= user.KELAS %></th>
+            <th scope="row">
+              <div class="d-flex justify-content-evenly">
+                <form action="">
+                  <a href="/edit/<%= user.NPM %>" class="btn btn-warning"
+                    >Edit</a
+                  >
+                </form>
+
+                <form action="/delete/<%= user.NPM %>" method="post">
+                  <button class="btn btn-danger" name="DELETE" type="submit">
+                    Delete
+                  </button>
+                </form>
+              </div>
+            </th>
+          </tr>
+          <% }%>
+        </tbody>
+      </table>
+
+      <!--  -->
+      <form action="/tambah" method="post">
+        <h3>Tambah Mahasiswa</h3>
+        <div class="mb-3">
+          <label for="NPM" class="form-label">NPM</label>
+          <input
+            type="text"
+            class="form-control"
+            name="npm"
+            aria-describedby="emailHelp"
+          />
+          <div id="emailHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+          <label for="NAMA" class="form-label">NAMA LENGKAP</label>
+          <input type="text" name="nama" class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="KELAS" class="form-label">KELAS</label>
+          <input type="text" name="kelas" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <!--  -->
+    </div>
+    <!--  -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!--  -->
+  </body>
+</html>
